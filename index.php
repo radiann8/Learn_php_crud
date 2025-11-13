@@ -41,6 +41,8 @@ $db->close();
                 <td><?php echo $row['title'] ?></td>
                 <td><?php echo $row['deskripsi'] ?></td>
                 <td><?php echo $row['stok'] ?></td>
+                <td><button type="submit">EDIT</button></td>
+                <td><button type="submit">DELETE</button></td>
             </tr>
             <?php } ?>
             </tbody>

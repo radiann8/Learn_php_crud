@@ -1,5 +1,6 @@
 <?php 
     include "service/database.php";
+    $data_input = "";
     
 if(isset($_POST["inventori"])){
     $title = $_POST["title"];
@@ -14,6 +15,11 @@ if(isset($_POST["inventori"])){
     }else {
         echo "DATA TIDAK MASUK";
     }
+//if (empty($data_input)) {
+//    echo "DATA KOSONG";
+//} else {
+//    echo "DATA MASUK" . $data_input;
+//}
 }
 $db->close();
 ?>
