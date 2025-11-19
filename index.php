@@ -13,34 +13,36 @@
         <title>Stock Barang</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
-           <!-- The Modal -->
-  <div class="modal fade" id="myModal">
+        <!-- The Modal -->
+    <div class="modal fade" id="myModal">
     <div class="modal-dialog">
-      <div class="modal-content">
-      
+    <div class="modal-content">
+        
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Modal Heading</h4>
+          <h4 class="modal-title">Tambah Barang</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
         <!-- Modal body -->
+        <form method="post">
         <div class="modal-body">
-          Modal body..
+          <input type="text" name="namabarang" placeholder="Nama Barang" class="form-control" required>
+          <br>
+          <input type="text" name="deskripsi" placeholder="Deskripsi Barang" class="form-control" required>
+          <br>
+          <input type="number" name="stock" class="form-control" placeholder="Stock" required>
+          <br>
+          <button type="submit" class="btn btn-primary" name="addnewbarang">Submit</button>
         </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-        
+        </form>    
       </div>
     </div>
   </div>
@@ -84,7 +86,7 @@
                         <div class="card mb-4">
                             <div class="card-header">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                            Open modal
+                            Tambah Barang
                         </button>
                             </div>
                             <div class="card-body">
@@ -97,7 +99,6 @@
                                             <th>Age</th>
                                         </tr>
                                     </thead>
-                                    
                                     <tbody>
                                         <tr>
                                             <td>Tiger Nixon</td>
