@@ -60,4 +60,32 @@ if (isset($_POST['addbarangkeluar'])){
         header('location:keluar.php');
     }
 }
+
+//Update info barang
+if(isset($_POST['updatebarang'])){
+    $idb = $_POST['idb'];
+    $namabarang = $_POST['namabarang'];
+    $deskripsi = $_POST['deskripsi'];
+
+    $update = mysqli_query($conn,"update stock set namabarang='$namabarang', deskripsi='$deskripsi' where idbarang ='$idb'");
+    if($update){
+        header('location:index.php');
+    } else {
+        echo'Gagal';
+        header('location:index.php');
+    }
+}
+
+//Menghapus barang dari stock
+if(isset($_POST['hapusbarang'])){
+    $idb = $_POST['idb'];
+
+    $hapus = mysqli_query($conn, "delete from stock where idbarang='$idb'");
+    if($hapus){
+        header('location:index.php');
+    } else {
+        echo'Gagal';
+        header('location:index.php');
+    }
+}    
 ?>
