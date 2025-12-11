@@ -47,38 +47,40 @@
     </div>
   </div>
 
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.php">Inventori Barang</a>
-            <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-
-        </nav>
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <a class="nav-link" href="index.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Stok Barang
-                            </a>
-                            <a class="nav-link" href="masuk.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Barang Masuk
-                            </a>
-                            <a class="nav-link" href="keluar.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Barang Keluar
-                            </a>
-                            <a class="nav-link" href="logout.php">
-                                Logout
-                            </a>
-                        </div>
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="index.php">Inventori Barang</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+    </nav>
+        
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <a class="nav-link" href="index.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Stok Barang
+                        </a>
+                        <a class="nav-link" href="masuk.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Barang Masuk
+                        </a>
+                        <a class="nav-link" href="keluar.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Barang Keluar
+                        </a>
+                        <a class="nav-link" href="logout.php">
+                            Logout
+                        </a>
                     </div>
-                </nav>
-            </div>
+                </div>
+            </nav>
+        </div>
+  
             <div id="layoutSidenav_content">
+             <div class="container-fluid">
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Stock Barang</h1>
@@ -90,8 +92,22 @@
                         </button>
                         <a href="export.php" class="btn btn-info">Export Data</a>
                             </div>
+                            <?php
+                                $ambildatastock = mysqli_query($conn,"select * from stock where stock < 1");
+
+                                while($fetch=mysqli_fetch_array($ambildatastock)){
+                                    $barang = $fetch['namabarang'];
+                            ?>
                             <div class="card-body">
-                                <table id="datatablesSimple">
+                                <div class="alert alert-danger alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <strong>Perhatian!</strong> Stock <?=$barang;?> Telah Habis
+                                </div>
+                            <?php
+                                }
+                            ?>
+                            <div class="table-responsive">
+                                <table class="table table-boardered" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -135,17 +151,17 @@
                                                 <!-- Modal Header -->
                                                 <div class="modal-header">
                                                 <h4 class="modal-title">Edit Barang</h4>
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 </div>
         
                                                 <!-- Modal body -->
                                                 <form method="post">
                                                 <div class="modal-body">
-                                                <input type="text" name="namabarang" value="<?=$namabarang;?>" class="form-control" required>
-                                                <br>
-                                                <input type="text" name="deskripsi" value="<?=$deskripsi;?>" class="form-control" required>
-                                                <br>
-                                                <input type="hidden" name="idb" value="<?=$idb;?>">
+                                                    <input type="text" name="namabarang" value="<?=$namabarang;?>" class="form-control" required>
+                                                    <br>
+                                                    <input type="text" name="deskripsi" value="<?=$deskripsi;?>" class="form-control" required>
+                                                    <br>
+                                                    <input type="hidden" name="idb" value="<?=$idb;?>">
                                                 <button type="submit" class="btn btn-primary" name="updatebarang">Submit</button>
                                                 </div>
                                                 </form>    
@@ -177,19 +193,21 @@
                                                 </div>
                                                 </div>
                                                 </div>
-
-
+                                                
                                         <?php
                                         };
-
                                         ?>
-
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </main>
+                    </div>
+                </div>
+            </div>
+            </div>
+                
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
@@ -202,7 +220,7 @@
                         </div>
                     </div>
                 </footer>
-            </div>
+            
         </div>
         <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> -->
         <script src="js/scripts.js"></script>
@@ -212,5 +230,4 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
     </body>
-   
 </html>
