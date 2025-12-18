@@ -8,12 +8,62 @@ if (isset($_POST['addnewbarang'])){
     $deskripsi = $_POST['deskripsi'];
     $stock = $_POST['stock'];
 
-    $addtotable = mysqli_query($conn,"insert into stock (namabarang, deskripsi, stock) values('$namabarang','$deskripsi','$stock')");
-    if($addtotable){
-        header('location:index.php');
+    //Tambah Gambar
+    $allowed_extension = array('png','jpg');
+    $nama = $_FILES['file']['name']; //mengambil nama gambar
+    $dot = explode('.',$nama);
+    $ekstensi = strtolower(end($dot)); //mengambil eksetensi
+    $ukuran = $_FILES['file']['size']; //mengambil size file
+    $file_temp = $_FILES['file']['tmp_name']; //mengambil lokasi filenya
+
+    //Penamaan file -> enkripsi
+    $image = md5(uniqid($nama,true) . time()).'.'.$ekstensi; //menggabungkan nama file yg dienkripsi dgn ekstensinya
+
+    //Validasi sudah ada atau belum
+    $cek = mysqli_query($conn,"select * from stock where namabarang='$namabarang'");
+    $hitung = mysqli_num_rows($cek);
+
+    if($hitung<1){
+
+    //Proses upload gambar
+    if(in_array($eksetensi, $allowed_extension) === true){
+        //validasi ukuran filenya
+        if ($ukuran < 15000000){
+            move_uploaded_file($file_tmp, 'images/'.$image);
+             
+            $addtotable = mysqli_query($conn,"insert into stock (namabarang, deskripsi, stock) values('$namabarang','$deskripsi','$stock')");
+                if($addtotable){
+                    header('location:index.php');
+                } else {
+                    echo'Gagal';
+                    header('location:index.php');
+                }
+        } else {
+            //Filenya lebih dari 15mb
+            echo '
+            <script>
+                alert("File terlalu besar");
+                window.location.href="index.php";
+            </script>    
+            ';
+        }
     } else {
-        echo'Gagal';
-        header('location:index.php');
+        //Filenya tidak png / jpg
+        echo '
+        <script>
+            alert("File Harus png/jpg");
+            window.location.href="index.php";
+        </script>    
+        ';
+    }
+
+    } else {
+        echo '
+        <script>
+            alert("nama barang sudah terdaftar");
+            window.location.href="index.php";
+        </script>  
+        ';
     }
 }
 

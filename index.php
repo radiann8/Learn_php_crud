@@ -32,13 +32,15 @@
         </div>
         
         <!-- Modal body -->
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
         <div class="modal-body">
           <input type="text" name="namabarang" placeholder="Nama Barang" class="form-control" required>
           <br>
           <input type="text" name="deskripsi" placeholder="Deskripsi Barang" class="form-control" required>
           <br>
           <input type="number" name="stock" class="form-control" placeholder="Stock" required>
+          <br>
+          <input type="file" name="file" class="form-control">
           <br>
           <button type="submit" class="btn btn-primary" name="addnewbarang">Submit</button>
         </div>
@@ -115,6 +117,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Gambar</th>
                                             <th>Nama Barang</th>
                                             <th>Deskripsi</th>
                                             <th>Stock</th>
@@ -160,14 +163,14 @@
         
                                                 <!-- Modal body -->
                                                 <form method="post">
-                                                <div class="modal-body">
-                                                    <input type="text" name="namabarang" value="<?=$namabarang;?>" class="form-control" required>
-                                                    <br>
-                                                    <input type="text" name="deskripsi" value="<?=$deskripsi;?>" class="form-control" required>
-                                                    <br>
-                                                    <input type="hidden" name="idb" value="<?=$idb;?>">
-                                                <button type="submit" class="btn btn-primary" name="updatebarang">Submit</button>
-                                                </div>
+                                                    <div class="modal-body">
+                                                        <input type="text" name="namabarang" value="<?=$namabarang;?>" class="form-control" required>
+                                                        <br>
+                                                        <input type="text" name="deskripsi" value="<?=$deskripsi;?>" class="form-control" required>
+                                                        <br>
+                                                        <input type="hidden" name="idb" value="<?=$idb;?>">
+                                                        <button type="submit" class="btn btn-primary" name="updatebarang">Submit</button>
+                                                    </div>
                                                 </form>    
                                                 </div>
                                                 </div>
@@ -180,23 +183,23 @@
         
                                                 <!-- Modal Header -->
                                                 <div class="modal-header">
-                                                <h4 class="modal-title">Hapus Barang</h4>
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Hapus Barang</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 </div>
         
                                                 <!-- Modal body -->
                                                 <form method="post">
-                                                <div class="modal-body">
-                                                Apakah yakin ingin menghapus <?=$namabarang;?>?
-                                                <input type="hidden" name="idb" value="<?=$idb;?>">
-                                                <br>
-                                                <br>
-                                                <button type="submit" class="btn btn-danger" name="hapusbarang">Delete</button>
-                                                </div>
+                                                    <div class="modal-body">
+                                                        Apakah yakin ingin menghapus <?=$namabarang;?>?
+                                                        <input type="hidden" name="idb" value="<?=$idb;?>">
+                                                        <br>
+                                                        <br>
+                                                        <button type="submit" class="btn btn-danger" name="hapusbarang">Delete</button>
+                                                     </div>
                                                 </form>    
-                                                </div>
-                                                </div>
-                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
 
                                         <?php
                                         };
