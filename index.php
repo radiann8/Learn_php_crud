@@ -18,6 +18,15 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <style>
+            .zoomable{
+                width: 100px;
+            }
+            .zoomable:hover{
+                transform: scale(2.5);
+                transition: 0.3s ease;
+            }
+        </style>
     </head>
     <body class="sb-nav-fixed">
         <!-- The Modal -->
@@ -134,9 +143,20 @@
                                             $deskripsi = $data['deskripsi'];
                                             $stock = $data['stock'];
                                             $idb = $data['idbarang'];
+
+                                            //Cek ada gambar atau tidak
+                                            $gambar = $data['image'];
+                                            if ($gambar==null){
+                                                //Jika tidak ada gambar
+                                                $img = 'No Photo';
+                                            } else {
+                                                //Jika ada gambar
+                                                $img = '<img src="images/'.$gambar.'" class="zoomable">';
+                                            }
                                         ?>
                                         <tr>
                                             <td><?=$i++;?></td>
+                                            <td><?=$img;?></td>
                                             <td><?=$namabarang;?></td>
                                             <td><?=$deskripsi;?></td>
                                             <td><?=$stock;?></td>
@@ -162,11 +182,13 @@
                                                 </div>
         
                                                 <!-- Modal body -->
-                                                <form method="post">
+                                                <form method="post" enctype="multipart/form-data">
                                                     <div class="modal-body">
                                                         <input type="text" name="namabarang" value="<?=$namabarang;?>" class="form-control" required>
                                                         <br>
                                                         <input type="text" name="deskripsi" value="<?=$deskripsi;?>" class="form-control" required>
+                                                        <br>
+                                                        <input type="file" name="file" class="form-control">
                                                         <br>
                                                         <input type="hidden" name="idb" value="<?=$idb;?>">
                                                         <button type="submit" class="btn btn-primary" name="updatebarang">Submit</button>
