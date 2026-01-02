@@ -18,6 +18,15 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <style>
+            .zoomable{
+                width: 80px;
+            }
+            .zoomable:hover{
+                transform: scale(2.0);
+                transition: 0.3s ease;
+            }
+        </style>
     </head>
     <body class="sb-nav-fixed">
         <!-- The Modal -->
@@ -112,6 +121,7 @@
                                     <thead>
                                         <tr>
                                             <th>Tanggal</th>
+                                            <th>Gambar</th>
                                             <th>Nama Barang</th>
                                             <th>Jumlah</th>
                                             <th>Penerima</th>
@@ -129,9 +139,20 @@
                                             $namabarang = $data['namabarang'];
                                             $qty = $data['qty'];
                                             $penerima = $data['penerima'];
+
+                                            //Cek ada gambar atau tidak
+                                            $gambar = $data['image'];
+                                            if ($gambar==null){
+                                                //Jika tidak ada gambar
+                                                $img = 'No Photo';
+                                            } else {
+                                                //Jika ada gambar
+                                                $img = '<img src="images/'.$gambar.'" class="zoomable">';
+                                            }
                                         ?>
                                         <tr>
                                             <td><?=$tanggal;?></td>
+                                            <td><?=$img;?></td>
                                             <td><?=$namabarang;?></td>
                                             <td><?=$qty;?></td>
                                             <td><?=$penerima;?></td>

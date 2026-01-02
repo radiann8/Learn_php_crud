@@ -20,11 +20,16 @@
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <style>
             .zoomable{
-                width: 100px;
+                width: 80px;
             }
             .zoomable:hover{
-                transform: scale(2.5);
+                transform: scale(2.0);
                 transition: 0.3s ease;
+            }
+
+            a{
+                text-decoration:none;
+                color:black;
             }
         </style>
     </head>
@@ -157,7 +162,7 @@
                                         <tr>
                                             <td><?=$i++;?></td>
                                             <td><?=$img;?></td>
-                                            <td><?=$namabarang;?></td>
+                                            <td><strong><a href ="detail.php?id=<?=$idb;?>"><?=$namabarang;?></a></strong></td>
                                             <td><?=$deskripsi;?></td>
                                             <td><?=$stock;?></td>
                                             <td>
