@@ -41,8 +41,8 @@
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <style>
             .zoomable{
-                width: 200px;
-                height: 200px;
+                width: 100px;
+                height: 100px;
             }
             .zoomable:hover{
                 transform: scale(2.0);
